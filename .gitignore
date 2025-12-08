@@ -1,0 +1,24 @@
+# Dependências e Logs
+######################
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Arquivos de Build/Compilação
+##############################
+# Backend Node.js
+/pdf-api/dist/
+
+# Frontend Angular
+/pdf-web/dist/
+/pdf-web/coverage/
+/pdf-web/.angular/
+/pdf-web/out-tsc/
+
+# Variáveis de Ambiente e Arquivos Locais
+##########################################
+**/.env
+.vscode/
+*.log
