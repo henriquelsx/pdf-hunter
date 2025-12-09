@@ -23,16 +23,19 @@ const io = new Server(server, { cors: { origin: "http://localhost:4200" } });
 io.on('connection', (socket) => {
     console.log(` Cliente conectado: ${socket.id}`);
 
-    // Rota do Socket para iniciar a busca
-    socket.on('search_pdfs', async (termo) => {
-        // Verifica se o termo existe e se a chave SerpApi está configurada
+    // AGORA RECEBEMOS UM OBJETO 'payload'
+    socket.on('search_pdfs', async (payload) => {
+        // Extrai termo e lang do payload
+        const { termo, lang } = payload;
+
         if (!termo || !process.env.SERPAPI_KEY) {
             socket.emit('error', 'Chave de busca ausente ou termo vazio.');
             return;
         }
 
         try {
-            await searchAndValidate(termo, socket);
+            // Passa o idioma para a função de busca
+            await searchAndValidate(termo, lang, socket);
             socket.emit('search_complete', { message: 'Busca finalizada' });
         } catch (error) {
             console.error('Erro fatal na busca:', error);
@@ -40,10 +43,9 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('disconnect', () => {
-        console.log(` Cliente desconectado: ${socket.id}`);
-    });
+    // ... disconnect ...
 });
+// ... startServer ...
 
 // ----------------------------------------------------
 // 2. Inicia o Servidor
