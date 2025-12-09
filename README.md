@@ -37,12 +37,12 @@ Uma aplicação Full Stack robusta para localizar, validar e listar arquivos PDF
 
 ### 1. Backend
 bash
-cd pdf-api
-npm install
+- cd pdf-api
+- npm install
 # Crie um arquivo .env com: SERPAPI_KEY=sua_chave e REDIS_URL=...
-npm start
+- npm start
 
 ### 2. Frontend
-cd pdf-app
-npm install
-ng serve
+- cd pdf-app
+- npm install
+- ng serve
